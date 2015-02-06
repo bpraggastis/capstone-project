@@ -22,6 +22,11 @@ class MedicalCondition < ActiveRecord::Base
   has_many :synonyms
   has_many :alternate_names, through: :synonyms
 
+  #outbreak associations
+  has_many :outbreaks
+  has_many :events, through: :outbreaks
+
+
   def self.search(query)
     response = __elasticsearch__.search(
     {
