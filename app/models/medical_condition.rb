@@ -40,12 +40,7 @@ class MedicalCondition < ActiveRecord::Base
         }
       }
     })
-
+    return response
   end
-
-
-
-
-
 
 end

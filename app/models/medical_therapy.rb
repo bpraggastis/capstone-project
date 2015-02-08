@@ -15,10 +15,27 @@ class MedicalTherapy < ActiveRecord::Base
 
   # Associations back to medical conditions
     #conditions that the treatment prevents:
-  has_many :preventable_conditions, class_name: "MedicalCondition", through: :primary_preventions
+  has_many :preventable_conditions, source: :medical_condition, through: :primary_preventions
     #conditions that the treatment treats:
-  has_many :treatable_conditions, class_name: "MedicalCondition", through: :possible_treatments
+  has_many :treatable_conditions, source: :medical_condition, through: :possible_treatments
+
+  has_many :therapy_synonyms
+  has_many :therapy_alternate_names, through: :therapy_synonyms
 
   validate :name, as: :unique
+
+  def self.search(query)
+    response = __elasticsearch__.search(
+    {
+      query: {
+        fuzzy_like_this_field: {
+          name: {
+            like_text: query
+          }
+        }
+      }
+    })
+    return response
+  end
 
 end

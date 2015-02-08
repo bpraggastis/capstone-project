@@ -9,7 +9,6 @@ class HomeController < ApplicationController
       @conditions = []
       responses.each do |response|
         response.medical_conditions.each do |condition|
-          condition.name = HomeController::hilite(condition.name, @cquery)
           @conditions << condition
         end
       end
@@ -20,16 +19,18 @@ class HomeController < ApplicationController
       @tquery = params[:therapy_query]
       @therapies = MedicalTherapy.search(@tquery).records
     else
-      @therapies = MedicalTherapy.all
+      @therapies = []
     end
   end
 
 
   def self.hilite(string, query = "")
-    if query != ""
-      string.gsub(query, "<span class='hi-lite'>#{query}</span>").html_safe
-    else
-      string
+    if string != nil
+      if query != ""
+        string.gsub(/#{Regexp.escape query}/i, "<span class='hi-lite'>#{query}</span>").html_safe
+      else
+        string
+      end
     end
   end
 
