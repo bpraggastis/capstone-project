@@ -22,6 +22,14 @@ ActiveRecord::Schema.define(version: 20150208233053) do
     t.datetime "updated_at"
   end
 
+  create_table "comments", force: true do |t|
+    t.text     "content"
+    t.integer  "author"
+    t.integer  "query"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "medical_cause_conditions", force: true do |t|
     t.integer  "medical_cause_id"
     t.integer  "medical_condition_id"
