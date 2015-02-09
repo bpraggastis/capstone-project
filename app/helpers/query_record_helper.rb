@@ -1,0 +1,2 @@
+module QueryRecordHelper
+end

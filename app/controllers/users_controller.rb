@@ -5,7 +5,7 @@ class UsersController < ApplicationController
 
     if @user.save
       session[:user_id] = @user.id.to_s
-      redirect_to @user 
+      redirect_to @user
     else
       redirect_to root_path
     end
@@ -18,6 +18,8 @@ class UsersController < ApplicationController
       redirect_to root_path
     end
     @user = User.find(session[:user_id])
+    @comments = Comment.where(user_id: @user.id)
+    @queries = QueryRecord.where(user_id: @user.id)
     # Bring up comments and queries, too?
   end
 
