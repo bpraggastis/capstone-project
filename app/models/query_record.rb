@@ -6,7 +6,7 @@ class QueryRecord < ActiveRecord::Base
   def parsed_date date
     the_date = which_date date
     m = the_date.strftime("%b")
-    d = the_date.strftime("%d")
+    d = the_date.strftime("%-d")
     y = the_date.strftime("%Y")
     m + "+" + d + "%2C+" + y
   end
