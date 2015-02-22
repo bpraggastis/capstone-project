@@ -37,10 +37,6 @@ class QueryRecordsController < ApplicationController
     end
   end
 
-  def show
-    @record = QueryRecord.find(params[:id])
-  end
-
   def destroy
     @record = QueryRecord.find(params[:id])
     @user = User.find(session[:user_id])
