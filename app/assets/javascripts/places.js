@@ -58,7 +58,7 @@ $(function(){
   // ------>>>>>>>>>>>>>>>> ends initialize
 
   var content_string = function(my_content,id){ string = '<div '+
-              'style="margin:0;padding:10px;background-color:#fcc08c;text-align: center;">' +
+              'style="margin:0;padding:10px;border:solid black;text-align: center;">' +
               ' <h5>'+ my_content + '</h5>' +
               '<button style="background-color: #58f55b; border-radius: 30px; color: navy;}' +
               ' href="#" id="extra-info-'+id+'" data-marker-id='+ id +
