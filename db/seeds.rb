@@ -1,15 +1,15 @@
-require 'csv'
+# require 'csv'
 
+
+###################################################################################################################
 #
-# ###################################################################################################################
-# #
-# #          Seed 1: Creates MedicalCondition records by name. Creates associated MedicalCode.
-# #
-# ###################################################################################################################
+#          Seed 1: Creates MedicalCondition records by name. Creates associated MedicalCode.
 #
-## **********  File Switch  *******************************************************************************************************************************************
+###################################################################################################################
+
+# **********  File Switch  *******************************************************************************************************************************************
 # DISEASE_DATA = JSON.parse(File.read("/Users/brendapraggastis/Ada/capstone/datafiles/diseases.json"))['diseases']
-# DISEASE_DATA = JSON.parse(HTTParty.get("https://s3-us-west-2.amazonaws.com/capstone-datafiles/datafiles/diseases.json"))['diseases']
+# DISEASE_DATA = JSON.parse(File.open("https://s3-us-west-2.amazonaws.com/capstone-datafiles/datafiles/diseases.json"))['diseases']
 # #
 #
 # ############## Create Initial Seed from list of Outbreak Medical Conditions
@@ -49,7 +49,7 @@ require 'csv'
 # w.save
 # w.codes.create(code_system: "image", code_value: "http://media.worldbulletin.net/250x190/2012/08/30/west-nile-virus.jpg")
 # w.alternate_names.create(name: "West Nile Virus")
-
+#
 # diseases = MedicalConditionHelpers::DataSeed.make_disease_bank(DISEASE_DATA)
 #
 # diseases.each do |disease|
@@ -67,7 +67,7 @@ require 'csv'
 #
 # end
 #
-
+#
 # #
 # # ###################################################################################################################
 # # #
@@ -77,17 +77,17 @@ require 'csv'
 # #
 #
 # # **********  File Switch  *******************************************************************************************************************************************
-# DRUG_DATA = Nokogiri::XML(File.read('/Users/brendapraggastis/Ada/capstone/datafiles/drugbank.xml'))
-# puts "loading drugbank file"
-# DRUG_DATA = Nokogiri::XML(HTTParty.get("https://s3-us-west-2.amazonaws.com/capstone-datafiles/datafiles/drugbank.xml"))
-# puts "got past defining drug_data"
+# # DRUG_DATA = Nokogiri::XML(File.read('/Users/brendapraggastis/Ada/capstone/datafiles/drugbank.xml'))
+# # puts "loading drugbank file"
+# DRUG_DATA = Nokogiri::XML(File.open("https://s3-us-west-2.amazonaws.com/capstone-datafiles/datafiles/drugbank.xml"))
+# # puts "got past defining drug_data"
 # drugs = DRUG_DATA.css('/drugbank/drug')
-# puts drugs.length
-# n=0
+# # puts drugs.length
+# # n=0
 # drugs.each do |drug|
 #   name = drug.css("/name").text
-#   puts drugs.length - n
-#   n += 1
+#   # puts drugs.length - n
+#   # n += 1
 #   description = drug.css('/description').text
 #   d = MedicalTherapy.create(name: name, description: description)
 #   d.codes.create(code_value: drug.css('cas-number').text, code_system: "cas-number")
@@ -97,17 +97,17 @@ require 'csv'
 #     d.codes.create(code_system: code.css('/resource').text, code_value: code.css('identifier').text)
 #   end
 # end
-
+#
 # ###################################################################################################################
 # #
 # #          Seed 3: Adds MedicalTherapy by name. Creates associated MedicalCode for DrugBank and DailyMed.
 # #                  Included generic name as associated AlternateName.
 # #
 # ###################################################################################################################
-
+#
 # # **********  File Switch  *******************************************************************************************************************************************
-# DMED = MedicalTherapyHelpers::DailyMedSeed::make_daily_med_seed(File.read("/Users/brendapraggastis/Ada/capstone/datafiles/dailymed_dump.json"))
-# DMED = MedicalTherapyHelpers::DailyMedSeed::make_daily_med_seed(HTTParty.get("https://s3-us-west-2.amazonaws.com/capstone-datafiles/datafiles/dailymed_dump.json"))
+# # DMED = MedicalTherapyHelpers::DailyMedSeed::make_daily_med_seed(File.read("/Users/brendapraggastis/Ada/capstone/datafiles/dailymed_dump.json"))
+# DMED = MedicalTherapyHelpers::DailyMedSeed::make_daily_med_seed(File.open("https://s3-us-west-2.amazonaws.com/capstone-datafiles/datafiles/dailymed_dump.json"))
 #
 # # This returns {dmedcode => {name:----, db_code:----, generic:----, description:----},--=>{..}...}
 # # Check medical_therapy_helpers for additional fields
@@ -301,7 +301,7 @@ require 'csv'
 #
 #
 # #####--> Replace with correct path name
-
+#
 # # **********  File Switch  *******************************************************************************************************************************************
 # geo_data = JSON.parse(File.read("/Users/brendapraggastis/Ada/capstone/datafiles/us_locations.json"))
 # geo_data = JSON.parse(HTTParty.get("https://s3-us-west-2.amazonaws.com/capstone-datafiles/datafiles/us_locations.json"))
@@ -342,23 +342,23 @@ require 'csv'
 #   "DATE_CREATED": "12/31/95",
 #   "DATE_EDITED": "1/24/09"
 # },
-###################################################################################################################
+##################################################################################################################
 #
-#          Seed 7: Outbreaks and Events
+#        #  Seed 7: Outbreaks and Events
 #
-###################################################################################################################
+##################################################################################################################
 
-## to enter Events:
-#  event_hash.keys = {number_infected, date, disease_code, latitude,
-#                     longitude, feature, county, state}
-#  medical_condition_id = MedicalCondition.find_by(name: code_hash(disease_code)).id
-#  outbreak_id = number given by filename
-#  geo_id = Geo.find_by(name: feature).id || Geo.create(.....)
-#  we could also use latitude, longitude here for find_by
-#  if we need to do a Geo.create then we need to add place_id
-#
+# to enter Events:
+ # event_hash.keys = {number_infected, date, disease_code, latitude,
+ #                    longitude, feature, county, state}
+ # medical_condition_id = MedicalCondition.find_by(name: code_hash(disease_code)).id
+ # outbreak_id = number given by filename
+ # geo_id = Geo.find_by(name: feature).id || Geo.create(.....)
+ # we could also use latitude, longitude here for find_by
+ # if we need to do a Geo.create then we need to add place_id
 
-####### Outbreaks  Seed:##########
+
+###### Outbreaks  Seed:##########
 
 Outbreak.create(title: "Mosquito-borne", description: "Cases of Malaria, Encephalitis and West " +
 "Nile Virus found in Louisiana, Florida, Georgia, Mississippi, Arkansas, and Alabama.")
@@ -403,9 +403,7 @@ end
           number_infected: event["population"].to_i,
           geo_id: g.id)
     rescue
-      puts MedicalCondition.find_by(name: code_hash[event["disease"]]).inspect
-      puts event["disease"]
-      puts code_hash[event["disease"]]
+      "!"
     end
   end
 end
