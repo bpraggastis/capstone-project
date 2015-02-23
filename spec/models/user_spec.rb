@@ -1,5 +1,21 @@
 require 'rails_helper'
 
 RSpec.describe User, :type => :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe 'validations' do
+    it 'ensures name uniqueness on create' do
+
+    end
+
+    it 'ensures name uniqueness on update' do
+
+    end
+
+    it 'ensures email uniqueness on create' do
+
+    end
+
+    it 'ensures email uniqueness on update' do
+
+    end
+  end
 end
