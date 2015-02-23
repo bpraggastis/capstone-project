@@ -77,6 +77,10 @@ body {
   color: #ffc375;
 }
 
+#nav-collapse-about {
+  padding-top: 50px;
+}
+
 .nav-form input {
   color: #2D3440;
 }
