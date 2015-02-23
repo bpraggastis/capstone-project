@@ -1,4 +1,4 @@
-# require 'csv'
+require 'csv'
 
 
 ###################################################################################################################
@@ -292,10 +292,10 @@
 # #
 # #
 # # ############## Seed Places Table (States and Territories) #############
-# lines = CSV.open('db/support/places.csv').readlines
-# lines.each do |abbr,region|
-#   Place.create(name: region ,abbreviation: abbr)
-# end
+lines = CSV.open('db/support/places.csv').readlines
+lines.each do |abbr,region|
+  Place.create(name: region ,abbreviation: abbr)
+end
 #
 # ############## Seed GEO Table ################
 #
