@@ -60,10 +60,10 @@ $(function(){
   var content_string = function(my_content,id){ string = '<div '+
               'style="margin:0;padding:10px;border:solid black;text-align: center;">' +
               ' <h5>'+ my_content + '</h5>' +
-              '<button style="background-color: #58f55b; border-radius: 30px; color: navy;}' +
+              '<button style="background-color: #048200; color: white; border-radius: 30px; color: white;}' +
               ' href="#" id="extra-info-'+id+'" data-marker-id='+ id +
               ' data-toggle="modal" data-target="#myModal">More Information</button>&nbsp&nbsp&nbsp&nbsp' +
-              '<button style="background-color: #7f040e; border-radius: 30px; color: white;}' +
+              '<button style="background-color: red; border-radius: 30px; color: white;}' +
               ' href="#" id="remove-marker-'+id+'" data-marker-id='+ id +
               ' >Remove Marker</button></div>';
               return string;
@@ -163,7 +163,7 @@ $(function(){
         google.maps.event.addListener(mycircle, 'click', function(e){
           marker.setMap(map);
         });
-        
+
 
       }
       else
@@ -247,7 +247,7 @@ $(function(){
           '<div style="display: block; font-family: 1.5em Maven_Pro sans-serif ;padding: 30px;">'+
           ' <img src='+ response.image+' alt="" style="float:left;margin:10px;max-width:50%;max-height:100;" /><br> ' +
           ' <h3 style="text-align:center;font-size: bold 3em serif">'+response.medical_condition.name+'</h3>'+
-        response.medical_condition.description + '<a href="http://localhost:3000/?condition_query='+
+        response.medical_condition.description + '<a href="http://diseasetracksapi.herokuapp.com/?condition_query='+
         response.medical_condition.name+'" target="_blank" >....search for more</a></div>');
         modal.modal('show')
       }
