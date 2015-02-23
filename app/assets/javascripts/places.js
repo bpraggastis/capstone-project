@@ -116,6 +116,7 @@ $(function(){
         var circleRadius = marker.event_number * 45000/250.0;
         var circleOpacity = marker.event_number * 0.35/250 + 0.15;
 
+
         var populationOptions = {
           strokeColor: '#FF0000',
           strokeOpacity: 0.10,
@@ -162,6 +163,7 @@ $(function(){
         google.maps.event.addListener(mycircle, 'click', function(e){
           marker.setMap(map);
         });
+        
 
       }
       else
@@ -242,10 +244,11 @@ $(function(){
         response = data;
         console.log(data);
         modal.find('.modal-content').html('<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>'+
-          '<div style="display: block;font: 1.5em serif;padding: 30px;">'+
-        ' <h3 style="font-size: bold 3em serif">'+response.medical_condition.name+'</h3>'+
-        ' <img src='+ response.image+' alt="" style="float:left;margin:10px;max-width:50%;max-height:100;" /><br> ' +
-        response.medical_condition.description + '</div>');
+          '<div style="display: block; font-family: 1.5em Maven_Pro sans-serif ;padding: 30px;">'+
+          ' <img src='+ response.image+' alt="" style="float:left;margin:10px;max-width:50%;max-height:100;" /><br> ' +
+          ' <h3 style="text-align:center;font-size: bold 3em serif">'+response.medical_condition.name+'</h3>'+
+        response.medical_condition.description + '<a href="http://localhost:3000/?condition_query='+
+        response.medical_condition.name+'" target="_blank" >....search for more</a></div>');
         modal.modal('show')
       }
 
