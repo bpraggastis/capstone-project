@@ -18,12 +18,14 @@ mumps = MedicalCondition.create(name: "Mumps", description: "An acute infectious
 mumps.codes.create(code_system: "meshid", code_value: "D009107")
 mumps.codes.create(code_system: "image", code_value: "http://www.cdc.gov/mumps/images/glands_image.gif")
 mumps.alternate_names.create(name: "Mumps")
+print "Mumps...."
 # Adding description and picture to rubella
 rubella = MedicalCondition.create(name: "Rubella")
 rubella.description = "The incubation period of rubella is 14 days, with a range of 12 to 23 days. Symptoms are often mild, and up to 50% of infections may be subclinical or inapparent. In children, rash is usually the first manifestation and a prodrome is rare. In older children and adults, there is often a 1 to 5 day prodrome with low-grade fever, malaise, lymphadenopathy, and upper respiratory symptoms preceding the rash. The rash of rubella is maculopapular and occurs 14 to 17 days after exposure. The rash usually occurs initially on the face and then progresses from head to foot. It lasts about 3 days and is occasionally pruritic. The rash is fainter than measles rash and does not coalesce. The rash is often more prominent after a hot shower or bath. Lymphadenopathy may begin a week before the rash and last several weeks. Postauricular, posterior cervical, and suboccipital nodes are commonly involved. Arthralgia and arthritis occur so frequently in adults that they are considered by many to be an integral part of the illness rather than a complication. Other symptoms of rubella include conjunctivitis, testalgia, or orchitis. Forschheimer spots may be noted on the soft palate but are not diagnostic for rubella."
 rubella.codes.create(code_system: "image", code_value: "http://upload.wikimedia.org/wikipedia/commons/a/ab/Rubella_virus_TEM_B82-0203_lores.jpg")
 rubella.save
 rubella.alternate_names.create(name: "Rubella")
+print "Rubella..."
 
 # adding description to malaria
 malaria = MedicalCondition.create(name: "Malaria")
@@ -31,6 +33,7 @@ malaria.description = "Malaria is a mosquito-borne infectious disease of humans 
 malaria.codes.create(code_system: "image", code_value: "http://upload.wikimedia.org/wikipedia/commons/f/f1/Malaria.jpg")
 malaria.save
 malaria.alternate_names.create(name: "Malaria")
+print "Malaria... "
 
 # adding Ebola image and description
 ebola = MedicalCondition.create(name: "Ebola")
@@ -38,34 +41,36 @@ ebola.description = "Ebola, previously known as Ebola hemorrhagic fever, is a ra
 ebola.codes.create(code_system: "image", code_value: "http://www.utmb.edu/virusimages/images/micrographs/Ebola_virus_2.jpg")
 ebola.save
 ebola.alternate_names.create(name: "Ebola")
-
+print "Ebola... "
 # adding Encephalitis
 encephalitis = MedicalCondition.create(name: "Encephalitis, St. Louis", description: "St. Louis encephalitis (SLE) is a viral infection of the brain (encephalitis) that is spread to humans through the bite of infected mosquitoes. Although the virus does not always cause disease, when it does, it can be life-threatening. The SLE virus is part of a group of viruses that are transmitted by blood-sucking insects, such as mosquitoes (arboviruses). Birds, especially domestic fowl, can harbor the virus. As the population of infected birds increase, outbreaks of SLE occur. This disease was first identified in St. Louis, hence the name.")
 encephalitis.codes.create(code_system: "image", code_value: "http://upload.wikimedia.org/wikipedia/commons/8/8c/St._Louis_Encephalitis_%28SLE%29_virus_EM_PHIL_1871_lores.JPG")
 encephalitis.alternate_names.create(name: "Encephalitis, St. Louis")
+print "Encephalitis... "
 # West Nile virus
 w = MedicalCondition.create(name: "West Nile Virus")
 w.description = "West Nile virus (WNV) is a mosquito-borne zoonotic arbovirus belonging to the genus Flavivirus in the family Flaviviridae. This flavivirus is found in temperate and tropical regions of the world. It was first identified in the West Nile subregion in the East African nation of Uganda in 1937. The main mode of WNV transmission is via various species of mosquitoes, which are the prime vector, with birds being the most commonly infected animal and serving as the prime reservoir host—especially passerines, which are of the largest order of birds, Passeriformes."
 w.save
 w.codes.create(code_system: "image", code_value: "http://media.worldbulletin.net/250x190/2012/08/30/west-nile-virus.jpg")
 w.alternate_names.create(name: "West Nile Virus")
+print "West Nile.."
 
-diseases = MedicalConditionHelpers::DataSeed.make_disease_bank(DISEASE_DATA)
+# diseases = MedicalConditionHelpers::DataSeed.make_disease_bank(DISEASE_DATA)
 
-diseases.each do |disease|
-  new_disease = MedicalCondition.find_by(name: disease['name']) || MedicalCondition.create(name: disease['name'])
-  puts new_disease.name
-  # taken from rdfs:label
-  disease["alternate_names"].each do |alternate_name|
-    unless new_disease.alternate_names.collect{|x| x.name}.include?(alternate_name)
-      new_disease.alternate_names.create(name: alternate_name)
-    end
-  end
-  disease["codes"].each do |code|
-    new_disease.codes.create(code_system: code["system"], code_value: code["value"])
-  end
-
-end
+# diseases.each do |disease|
+#   new_disease = MedicalCondition.find_by(name: disease['name']) || MedicalCondition.create(name: disease['name'])
+#   puts new_disease.name
+#   # taken from rdfs:label
+#   disease["alternate_names"].each do |alternate_name|
+#     unless new_disease.alternate_names.collect{|x| x.name}.include?(alternate_name)
+#       new_disease.alternate_names.create(name: alternate_name)
+#     end
+#   end
+#   disease["codes"].each do |code|
+#     new_disease.codes.create(code_system: code["system"], code_value: code["value"])
+#   end
+#
+# end
 
 #
 # #
