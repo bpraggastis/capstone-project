@@ -14,59 +14,59 @@ require 'csv'
 #
 # ############## Create Initial Seed from list of Outbreak Medical Conditions
 #
-# mumps = MedicalCondition.create(name: "Mumps", description: "An acute infectious disease caused by RUBULAVIRUS, spread by direct contact, airborne droplet nuclei, fomites contaminated by infectious saliva, and perhaps urine, and usually seen in children under the age of 15, although adults may also be affected. (From Dorland, 28th ed)")
-# mumps.codes.create(code_system: "meshid", code_value: "D009107")
-# mumps.codes.create(code_system: "image", code_value: "http://www.cdc.gov/mumps/images/glands_image.gif")
-# mumps.alternate_names.create(name: "Mumps")
-# # Adding description and picture to rubella
-# rubella = MedicalCondition.create(name: "Rubella")
-# rubella.description = "The incubation period of rubella is 14 days, with a range of 12 to 23 days. Symptoms are often mild, and up to 50% of infections may be subclinical or inapparent. In children, rash is usually the first manifestation and a prodrome is rare. In older children and adults, there is often a 1 to 5 day prodrome with low-grade fever, malaise, lymphadenopathy, and upper respiratory symptoms preceding the rash. The rash of rubella is maculopapular and occurs 14 to 17 days after exposure. The rash usually occurs initially on the face and then progresses from head to foot. It lasts about 3 days and is occasionally pruritic. The rash is fainter than measles rash and does not coalesce. The rash is often more prominent after a hot shower or bath. Lymphadenopathy may begin a week before the rash and last several weeks. Postauricular, posterior cervical, and suboccipital nodes are commonly involved. Arthralgia and arthritis occur so frequently in adults that they are considered by many to be an integral part of the illness rather than a complication. Other symptoms of rubella include conjunctivitis, testalgia, or orchitis. Forschheimer spots may be noted on the soft palate but are not diagnostic for rubella."
-# rubella.codes.create(code_system: "image", code_value: "http://upload.wikimedia.org/wikipedia/commons/a/ab/Rubella_virus_TEM_B82-0203_lores.jpg")
-# rubella.save
-# rubella.alternate_names.create(name: "Rubella")
-#
-# # adding description to malaria
-# malaria = MedicalCondition.create(name: "Malaria")
-# malaria.description = "Malaria is a mosquito-borne infectious disease of humans and other animals caused by parasitic protozoans (a group of single-celled microorganism) belonging to the genus Plasmodium. Malaria causes symptoms that typically include fever, fatigue, vomiting and headaches. In severe cases it can cause yellow skin, seizures, coma or death. The disease is transmitted by the biting of mosquitos, and the symptoms usually begin ten to fifteen days after being bitten. In those who have not been appropriately treated disease may recur months later. In those who have recently survived an infection, re-infection typically causes milder symptoms. This partial resistance disappears over months to years if there is no ongoing exposure to malaria."
-# malaria.codes.create(code_system: "image", code_value: "http://upload.wikimedia.org/wikipedia/commons/f/f1/Malaria.jpg")
-# malaria.save
-# malaria.alternate_names.create(name: "Malaria")
-#
-# # adding Ebola image and description
-# ebola = MedicalCondition.create(name: "Ebola")
-# ebola.description = "Ebola, previously known as Ebola hemorrhagic fever, is a rare and deadly disease caused by infection with one of the Ebola virus strains. Ebola can cause disease in humans and nonhuman primates (monkeys, gorillas, and chimpanzees). Ebola is caused by infection with a virus of the family Filoviridae, genus Ebolavirus. There are five identified Ebola virus species, four of which are known to cause disease in humans: Ebola virus (Zaire ebolavirus); Sudan virus (Sudan ebolavirus); Taï Forest virus (Taï Forest ebolavirus, formerly Côte d’Ivoire ebolavirus); and Bundibugyo virus (Bundibugyo ebolavirus). The fifth, Reston virus (Reston ebolavirus), has caused disease in nonhuman primates, but not in humans."
-# ebola.codes.create(code_system: "image", code_value: "http://www.utmb.edu/virusimages/images/micrographs/Ebola_virus_2.jpg")
-# ebola.save
-# ebola.alternate_names.create(name: "Ebola")
-#
-# # adding Encephalitis
-# encephalitis = MedicalCondition.create(name: "Encephalitis, St. Louis", description: "St. Louis encephalitis (SLE) is a viral infection of the brain (encephalitis) that is spread to humans through the bite of infected mosquitoes. Although the virus does not always cause disease, when it does, it can be life-threatening. The SLE virus is part of a group of viruses that are transmitted by blood-sucking insects, such as mosquitoes (arboviruses). Birds, especially domestic fowl, can harbor the virus. As the population of infected birds increase, outbreaks of SLE occur. This disease was first identified in St. Louis, hence the name.")
-# encephalitis.codes.create(code_system: "image", code_value: "http://upload.wikimedia.org/wikipedia/commons/8/8c/St._Louis_Encephalitis_%28SLE%29_virus_EM_PHIL_1871_lores.JPG")
-# encephalitis.alternate_names.create(name: "Encephalitis, St. Louis")
-# # West Nile virus
-# w = MedicalCondition.create(name: "West Nile Virus")
-# w.description = "West Nile virus (WNV) is a mosquito-borne zoonotic arbovirus belonging to the genus Flavivirus in the family Flaviviridae. This flavivirus is found in temperate and tropical regions of the world. It was first identified in the West Nile subregion in the East African nation of Uganda in 1937. The main mode of WNV transmission is via various species of mosquitoes, which are the prime vector, with birds being the most commonly infected animal and serving as the prime reservoir host—especially passerines, which are of the largest order of birds, Passeriformes."
-# w.save
-# w.codes.create(code_system: "image", code_value: "http://media.worldbulletin.net/250x190/2012/08/30/west-nile-virus.jpg")
-# w.alternate_names.create(name: "West Nile Virus")
-#
-# diseases = MedicalConditionHelpers::DataSeed.make_disease_bank(DISEASE_DATA)
-#
-# diseases.each do |disease|
-#   new_disease = MedicalCondition.find_by(name: disease['name']) || MedicalCondition.create(name: disease['name'])
-#   puts new_disease.name
-#   # taken from rdfs:label
-#   disease["alternate_names"].each do |alternate_name|
-#     unless new_disease.alternate_names.collect{|x| x.name}.include?(alternate_name)
-#       new_disease.alternate_names.create(name: alternate_name)
-#     end
-#   end
-#   disease["codes"].each do |code|
-#     new_disease.codes.create(code_system: code["system"], code_value: code["value"])
-#   end
-#
-# end
-#
+mumps = MedicalCondition.create(name: "Mumps", description: "An acute infectious disease caused by RUBULAVIRUS, spread by direct contact, airborne droplet nuclei, fomites contaminated by infectious saliva, and perhaps urine, and usually seen in children under the age of 15, although adults may also be affected. (From Dorland, 28th ed)")
+mumps.codes.create(code_system: "meshid", code_value: "D009107")
+mumps.codes.create(code_system: "image", code_value: "http://www.cdc.gov/mumps/images/glands_image.gif")
+mumps.alternate_names.create(name: "Mumps")
+# Adding description and picture to rubella
+rubella = MedicalCondition.create(name: "Rubella")
+rubella.description = "The incubation period of rubella is 14 days, with a range of 12 to 23 days. Symptoms are often mild, and up to 50% of infections may be subclinical or inapparent. In children, rash is usually the first manifestation and a prodrome is rare. In older children and adults, there is often a 1 to 5 day prodrome with low-grade fever, malaise, lymphadenopathy, and upper respiratory symptoms preceding the rash. The rash of rubella is maculopapular and occurs 14 to 17 days after exposure. The rash usually occurs initially on the face and then progresses from head to foot. It lasts about 3 days and is occasionally pruritic. The rash is fainter than measles rash and does not coalesce. The rash is often more prominent after a hot shower or bath. Lymphadenopathy may begin a week before the rash and last several weeks. Postauricular, posterior cervical, and suboccipital nodes are commonly involved. Arthralgia and arthritis occur so frequently in adults that they are considered by many to be an integral part of the illness rather than a complication. Other symptoms of rubella include conjunctivitis, testalgia, or orchitis. Forschheimer spots may be noted on the soft palate but are not diagnostic for rubella."
+rubella.codes.create(code_system: "image", code_value: "http://upload.wikimedia.org/wikipedia/commons/a/ab/Rubella_virus_TEM_B82-0203_lores.jpg")
+rubella.save
+rubella.alternate_names.create(name: "Rubella")
+
+# adding description to malaria
+malaria = MedicalCondition.create(name: "Malaria")
+malaria.description = "Malaria is a mosquito-borne infectious disease of humans and other animals caused by parasitic protozoans (a group of single-celled microorganism) belonging to the genus Plasmodium. Malaria causes symptoms that typically include fever, fatigue, vomiting and headaches. In severe cases it can cause yellow skin, seizures, coma or death. The disease is transmitted by the biting of mosquitos, and the symptoms usually begin ten to fifteen days after being bitten. In those who have not been appropriately treated disease may recur months later. In those who have recently survived an infection, re-infection typically causes milder symptoms. This partial resistance disappears over months to years if there is no ongoing exposure to malaria."
+malaria.codes.create(code_system: "image", code_value: "http://upload.wikimedia.org/wikipedia/commons/f/f1/Malaria.jpg")
+malaria.save
+malaria.alternate_names.create(name: "Malaria")
+
+# adding Ebola image and description
+ebola = MedicalCondition.create(name: "Ebola")
+ebola.description = "Ebola, previously known as Ebola hemorrhagic fever, is a rare and deadly disease caused by infection with one of the Ebola virus strains. Ebola can cause disease in humans and nonhuman primates (monkeys, gorillas, and chimpanzees). Ebola is caused by infection with a virus of the family Filoviridae, genus Ebolavirus. There are five identified Ebola virus species, four of which are known to cause disease in humans: Ebola virus (Zaire ebolavirus); Sudan virus (Sudan ebolavirus); Taï Forest virus (Taï Forest ebolavirus, formerly Côte d’Ivoire ebolavirus); and Bundibugyo virus (Bundibugyo ebolavirus). The fifth, Reston virus (Reston ebolavirus), has caused disease in nonhuman primates, but not in humans."
+ebola.codes.create(code_system: "image", code_value: "http://www.utmb.edu/virusimages/images/micrographs/Ebola_virus_2.jpg")
+ebola.save
+ebola.alternate_names.create(name: "Ebola")
+
+# adding Encephalitis
+encephalitis = MedicalCondition.create(name: "Encephalitis, St. Louis", description: "St. Louis encephalitis (SLE) is a viral infection of the brain (encephalitis) that is spread to humans through the bite of infected mosquitoes. Although the virus does not always cause disease, when it does, it can be life-threatening. The SLE virus is part of a group of viruses that are transmitted by blood-sucking insects, such as mosquitoes (arboviruses). Birds, especially domestic fowl, can harbor the virus. As the population of infected birds increase, outbreaks of SLE occur. This disease was first identified in St. Louis, hence the name.")
+encephalitis.codes.create(code_system: "image", code_value: "http://upload.wikimedia.org/wikipedia/commons/8/8c/St._Louis_Encephalitis_%28SLE%29_virus_EM_PHIL_1871_lores.JPG")
+encephalitis.alternate_names.create(name: "Encephalitis, St. Louis")
+# West Nile virus
+w = MedicalCondition.create(name: "West Nile Virus")
+w.description = "West Nile virus (WNV) is a mosquito-borne zoonotic arbovirus belonging to the genus Flavivirus in the family Flaviviridae. This flavivirus is found in temperate and tropical regions of the world. It was first identified in the West Nile subregion in the East African nation of Uganda in 1937. The main mode of WNV transmission is via various species of mosquitoes, which are the prime vector, with birds being the most commonly infected animal and serving as the prime reservoir host—especially passerines, which are of the largest order of birds, Passeriformes."
+w.save
+w.codes.create(code_system: "image", code_value: "http://media.worldbulletin.net/250x190/2012/08/30/west-nile-virus.jpg")
+w.alternate_names.create(name: "West Nile Virus")
+
+diseases = MedicalConditionHelpers::DataSeed.make_disease_bank(DISEASE_DATA)
+
+diseases.each do |disease|
+  new_disease = MedicalCondition.find_by(name: disease['name']) || MedicalCondition.create(name: disease['name'])
+  puts new_disease.name
+  # taken from rdfs:label
+  disease["alternate_names"].each do |alternate_name|
+    unless new_disease.alternate_names.collect{|x| x.name}.include?(alternate_name)
+      new_disease.alternate_names.create(name: alternate_name)
+    end
+  end
+  disease["codes"].each do |code|
+    new_disease.codes.create(code_system: code["system"], code_value: code["value"])
+  end
+
+end
+
 #
 # #
 # # ###################################################################################################################
