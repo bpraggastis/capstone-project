@@ -1,6 +1,6 @@
 class MedicalTherapy < ActiveRecord::Base
 
-  include Searchable
+  
 
   #join tables back to medical conditions (for treatment and prevention)
   has_many :possible_treatments

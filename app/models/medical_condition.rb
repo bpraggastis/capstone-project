@@ -1,6 +1,6 @@
 class MedicalCondition < ActiveRecord::Base
 
-  include Searchable
+  
 
   #join tables for medical therapies
   has_many :primary_preventions

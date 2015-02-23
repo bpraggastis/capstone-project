@@ -1,6 +1,6 @@
 class MedicalCode < ActiveRecord::Base
 
-  include Searchable
+  
   has_one :medical_code_therapy
   has_many :medical_code_conditions
 

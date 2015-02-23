@@ -1,6 +1,5 @@
 class Geo < ActiveRecord::Base
   # these are specific places given by latitude and longitude
-  Searchable
 
   belongs_to :place
   has_many :events
